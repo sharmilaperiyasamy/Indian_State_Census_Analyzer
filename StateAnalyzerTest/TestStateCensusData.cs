@@ -48,12 +48,28 @@ namespace StateAnalyzerTest
             {
                 int expected = 29;
                 Indian_Census_Analyzer.StateAnalyser state = new Indian_Census_Analyzer.StateAnalyser();
-                int output = state.DataAnalyzer(@"C:\Users\Lenovo\source\repos\Bridgelabz\Indian_State_Census_Analyzer\InvalidDelimiterStateData.cs");
+                int output = state.DataAnalyzer(@"C:\Users\Lenovo\source\repos\Bridgelabz\Indian_State_Census_Analyzer\InvalidDelimiterStateData.csv");
                 Assert.AreEqual(expected, output);
             }
             catch (Exception ex)
             {
                 Assert.AreEqual("Invalid Delimiter", ex.Message);
+            }
+        }
+        
+        //uc1testcase1.5 incorrect header
+        public void Census_AnalyzerIncorrectHeader()
+        {
+            try
+            {
+                int expected = 29;
+                Indian_Census_Analyzer.StateAnalyser state = new Indian_Census_Analyzer.StateAnalyser();
+                int output = state.DataAnalyzer(@"C:\Users\Lenovo\source\repos\Bridgelabz\Indian_State_Census_Analyzer\IncorrectHeaderStateCensus.csv");
+                Assert.AreEqual(expected, output);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Incorrect Header", ex.Message);
             }
         }
     }
