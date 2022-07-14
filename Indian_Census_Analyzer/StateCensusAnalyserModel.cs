@@ -16,8 +16,7 @@ namespace Indian_Census_Analyzer
     public class StateDataModel
     {
         public string SrNo { get; set; }
-        public string State { get; set; }
-        public string Name { get; set; }
+        public string StateName { get; set; }
         public string TIN { get; set; }
         public string StateCode { get; set; }
     }

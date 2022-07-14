@@ -45,5 +45,40 @@ namespace Indian_Census_Analyzer
             }
             throw new ExceptionHandler(ExceptionHandler.ExceptionType.INVALID_FILE_TYPE, "Invalid file Type");
         }
+        public int StateDataAnalyzer(string filePath)
+        {
+            if (Path.GetExtension(filePath) == ".csv")
+            {
+                try
+                {
+                    if (filePath.Contains("StateCode.csv"))
+                    {
+                        int count;
+                        using (var reader = new StreamReader(filePath))
+                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                        {
+                            var list = csv.GetRecords<StateDataModel>().ToList();
+                            count = list.Count();
+                            Console.WriteLine("SrNo\t-->\tStateName\t-->\tTIN\t-->\tStateCode");
+                            foreach (var data in list)
+                            {
+                                Console.WriteLine(data.SrNo + "\t-->\t" + data.StateName + "\t-->\t" + data.TIN + "\t-->\t" + data.StateCode);
+                            }
+                        }
+                        return count;
+                    }
+                    throw new ExceptionHandler(ExceptionHandler.ExceptionType.INVALID_FILE, "Invalid File");
+                }
+                catch (CsvHelper.MissingFieldException)
+                {
+                    throw new ExceptionHandler(ExceptionHandler.ExceptionType.INCORRECT_DELIMITER, "Incorrect Delimiter");
+                }
+                catch (CsvHelper.HeaderValidationException)
+                {
+                    throw new ExceptionHandler(ExceptionHandler.ExceptionType.INCORRECT_HEADER, "Incorrect Header");
+                }
+            }
+            throw new ExceptionHandler(ExceptionHandler.ExceptionType.INVALID_FILE_TYPE, "Invalid file Type");
+        }
     }
 }
