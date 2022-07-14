@@ -41,5 +41,20 @@ namespace StateAnalyzerTest
                 Assert.AreEqual("Invalid File Type", ex.Message);
             }
         }
+        //uc1testcase1.4 invalid Delimiter
+        public void Census_AnalyzerInvalidDelimiter()
+        {
+            try
+            {
+                int expected = 29;
+                Indian_Census_Analyzer.StateAnalyser state = new Indian_Census_Analyzer.StateAnalyser();
+                int output = state.DataAnalyzer(@"C:\Users\Lenovo\source\repos\Bridgelabz\Indian_State_Census_Analyzer\InvalidDelimiterStateData.cs");
+                Assert.AreEqual(expected, output);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Invalid Delimiter", ex.Message);
+            }
+        }
     }
 }
