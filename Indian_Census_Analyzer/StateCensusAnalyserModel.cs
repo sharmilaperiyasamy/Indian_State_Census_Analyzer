@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Indian_Census_Analyzer
 {
-    internal class StateCensusAnalyserModel
+    public class StateCensusAnalyserModel
     {
         public string State { get; set; }
         public string Population { get; set; }
